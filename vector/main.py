@@ -1,0 +1,41 @@
+from clsLog import clsLog
+import anki_vector
+from clsSay import Say
+class Loop (object):
+    """This class for """ 
+    def __init__(self,robot):
+        """This initilization for 
+        """ 
+        try:
+            self.robot = robot
+            self.say = Say(self.robot)
+            self.init()
+            return
+        except Exception as e:
+            logger = clsLog()
+            logger.error(str(e))
+            return
+    def init(self):
+        """ This Method for  
+        @type  paramName: Bool
+        @param paramName : Description
+        @rtype:  Boolean
+        @return: True : everything went fine
+        False : Something went wrong
+        """ 
+        try: 
+            self.say.say("Welcome to the World ! ")
+            return True
+        except Exception as e:
+            logger = clsLog()
+            logger.error(str(e))
+            return False
+
+def main():
+    args = anki_vector.util.parse_command_args()    
+    with anki_vector.Robot(args.serial) as robot:
+        vector= Loop(robot)
+        print (robot.status._status)
+if __name__ == "__main__":
+    main()
+
