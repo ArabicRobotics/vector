@@ -39,7 +39,7 @@ class Loop (object):
             self.robot.disconnect()
         except Exception as e:
             logger = clsLog()
-            logger.error(str(e))
+            logger.error(str(e)) 
             return False
 def main():
     args = anki_vector.util.parse_command_args()    
