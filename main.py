@@ -24,18 +24,28 @@ class Loop (object):
         False : Something went wrong
         """ 
         try: 
+            self.robot.connect()
             self.say.say("Welcome to the World ! ")
             return True
         except Exception as e:
             logger = clsLog()
             logger.error(str(e))
             return False
-
+    def shutDown(self):
+        try:
+			# Run your commands
+            self.robot.anim.play_animation_trigger("GreetAfterLongTime")
+			# Disconnect from Vector
+            self.robot.disconnect()
+        except Exception as e:
+            logger = clsLog()
+            logger.error(str(e))
+            return False
 def main():
     args = anki_vector.util.parse_command_args()    
-    with anki_vector.Robot(args.serial) as robot:
-        vector= Loop(robot)
-        print (robot.status._status)
+    with anki_vector.Robot(args.serial) as vector:
+        robot= Loop(vector)
+        print (vector.status._status)
 if __name__ == "__main__":
     main()
 
