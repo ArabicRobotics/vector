@@ -18,7 +18,7 @@
   },
   "ServerRobot":{
     "ip":"Reyashi.dyndns.org", 
-    "port":12345
+    "port":12344
   },
   "databaseServer":{
     "serverName":"188.121.44.193",
