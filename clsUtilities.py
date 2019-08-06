@@ -35,7 +35,7 @@ class jsonFormatter (object):
             self._dataArray = []
             self._json = None    
             return
-        except Exception as (e):
+        except Exception as e:
             logger = clsLog()
             logger.error(str(e))
             return
@@ -45,8 +45,8 @@ class jsonFormatter (object):
         try:
             self._moreParams[name]=value
             return True
-        except Exception as (e):
-            print  "Error on add- json - clsutilities"+str(e)
+        except Exception as e:
+            print  ("Error on add- json - clsutilities"+str(e))
             logger = clsLog()
             logger.error(str(e))
             return False
@@ -61,7 +61,7 @@ class jsonFormatter (object):
         try: 
             self._dataArray.append({'name':name,'value':value})
             return True
-        except Exception as (e):
+        except Exception as e:
             logger = clsLog()
             logger.error(str(e))
             return False
@@ -78,7 +78,7 @@ class jsonFormatter (object):
         """ 
         try:         
             return json.loads(jsonString)
-        except Exception as (e):
+        except Exception as e:
             logger = clsLog()
             logger.error(str(e))
             return False
@@ -133,6 +133,6 @@ class jsonFormatter (object):
 def main():
     jsonObj = jsonFormatter("dfgdsfg",{'Status':'sgdsfgdsfgsdfgsdfgd'})
     jsonObj.Add('Status2','ghdfghfg')
-    print jsonObj.Json
+    print (jsonObj.Json)
 if __name__ == '__main__':
     main()

@@ -133,7 +133,7 @@ class enumConfigFile(object):
             while switch(enumConfig):
                 if case(enumConfigFile.configuration):
                     return "myInfo.json"
-        except Exception as (e):
+        except Exception as e:
             logger = clsLog()
             logger.error(str(e))
             return False
