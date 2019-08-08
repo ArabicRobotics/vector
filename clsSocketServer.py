@@ -229,6 +229,7 @@ def Main():
     time.sleep(30)
     server.Halt = True
     t.join()
+    exit(0)
     print ("Threads Joins .. Done")
     time.sleep(3)
 if __name__ == '__main__':

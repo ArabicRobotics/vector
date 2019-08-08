@@ -1,0 +1,26 @@
+2019-08-08 01:08:41 DEBUG Starting logging
+2019-08-08 01:08:41 ERROR (clsRobot.py:22):connect():  Event Id : None m: 'NoneType' object has no attribute 'connect'2019-08-08 01:08:41.956933
+2019-08-08 01:08:41 DEBUG Starting logging
+2019-08-08 01:08:41 ERROR (clsPhoto.py:59):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'camera'2019-08-08 01:08:41.959157
+2019-08-08 01:08:41 DEBUG Starting logging
+2019-08-08 01:08:41 ERROR (clsRobot.py:35):disconnect():  Event Id : None m: 'NoneType' object has no attribute 'disconnect'2019-08-08 01:08:41.960312
+2019-08-08 01:10:08 DEBUG Starting logging
+2019-08-08 01:10:08 ERROR (clsPhoto.py:59):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'camera'2019-08-08 01:10:08.477661
+2019-08-08 01:13:06 DEBUG Starting logging
+2019-08-08 01:13:07 ERROR (clsPhoto.py:59):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'camera'2019-08-08 01:13:06.980604
+2019-08-08 01:21:27 DEBUG Starting logging
+2019-08-08 01:21:27 ERROR (clsPhoto.py:59):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'camera'2019-08-08 01:21:27.776811
+2019-08-08 01:34:05 DEBUG Starting logging
+2019-08-08 01:34:05 ERROR (clsPhoto.py:59):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'camera'2019-08-08 01:34:05.625775
+2019-08-08 01:48:18 DEBUG Starting logging
+2019-08-08 01:48:18 ERROR (clsPhoto.py:59):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'camera'2019-08-08 01:48:18.106601
+2019-08-08 01:48:41 DEBUG Starting logging
+2019-08-08 01:48:41 ERROR (clsPhoto.py:59):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'camera'2019-08-08 01:48:41.350139
+2019-08-08 01:49:40 DEBUG Starting logging
+2019-08-08 01:49:40 ERROR (clsPhoto.py:59):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'raw_image'2019-08-08 01:49:40.773890
+2019-08-08 01:50:40 DEBUG Starting logging
+2019-08-08 01:50:40 ERROR (clsPhoto.py:59):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'raw_image'2019-08-08 01:50:40.414938
+2019-08-08 01:52:54 DEBUG Starting logging
+2019-08-08 01:52:54 ERROR (clsPhoto.py:58):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'raw_image'2019-08-08 01:52:54.902393
+2019-08-08 01:56:34 DEBUG Starting logging
+2019-08-08 01:56:34 ERROR (clsPhoto.py:60):takePhoto():  Event Id : None m: 'NoneType' object has no attribute 'raw_image'2019-08-08 01:56:34.980669

@@ -43,10 +43,7 @@ class Loop (object):
             return False
 def main():
 	
-    args = anki_vector.util.parse_command_args()    
-	vector =  anki_vector.Robot(args.serial,enable_audio_feed=True,enable_camera_feed=True)
-    robot= Loop(vector)
-	
+
     print (vector.status._status)
 if __name__ == "__main__":
     main()

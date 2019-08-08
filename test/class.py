@@ -4,7 +4,7 @@ from  enums import *
 from clsUtilities import *
 from clsjsoninfoLoader import GlobalInfo
 class MyClass (object):
-	def __init__(self, robot,socket):
+	def __init__(self, robot,socket = None):
 		try:
 			self.robot = robot
 			self.isRunning = False
@@ -14,7 +14,7 @@ class MyClass (object):
 			print  ("Error on init "+str(e))
 			logger = clsLog()
 			logger.error(str(e))
-			return False
+			return 
 
 
 	def boot(self):
