@@ -19,7 +19,7 @@ class Loop (object):
             return
         except Exception as e:
             logger = clsLog()
-            logger.error(str(e))
+            logger.error(str(e))  
             return
     def init(self):
         """ This Method for  
