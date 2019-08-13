@@ -46,6 +46,7 @@ class Photo (object):
 
 	def takePhoto(self,fileName=None):
 		try : 
+			print ("start take photo ")
 			image = Robot.vector.camera.capture_single_image()
 			print ("print Image  :" )
 			print (image)
@@ -53,6 +54,7 @@ class Photo (object):
 			if fileName !=None:
 				innerImage = image.raw_image
 				innerImage.save(fileName)
+			print ("takephoto Done ! ")
 			return image
 		except Exception as e:
 			print  ("Error on Take photo"+str(e))
@@ -70,13 +72,12 @@ class Photo (object):
 			logger.error(str(e))
 			return False
 
-
-
 if __name__ == "__main__":
 	import time
 	photo = Photo()
 	photo.boot()
 	print (Robot.connect())
+
 	photo.takePhoto("save.jpg")
 	time.sleep(1)
 	Robot.disconnect()

@@ -3,9 +3,9 @@ from clsLog import clsLog
 from  enums import *
 from clsUtilities import *
 from clsjsoninfoLoader import GlobalInfo
+from clsRobot import Robot
 class Screen(object):
-	def __init__(self, robot,socket=None):
-		self.robot = robot
+	def __init__(self,socket=None):
 		self.isRunning = False
 		self.socket = socket
 		return
@@ -29,29 +29,34 @@ class Screen(object):
 			logger = clsLog()
 			logger.error(str(e))
 			return False
+			
 
 
 
 	def show_Camera(self):		
 		print('Show camera')
-		self.robot.camera.init_camera_feed()
-		self.robot.vision.enable_display_camera_feed_on_face(True)
+		Robot.vector.camera.init_camera_feed()
+		Robot.vector.vision.enable_display_camera_feed_on_face(True)
 
 	def hide_camera(self):
-	    print('Close camera')
-	    self.robot.vision.enable_display_camera_feed_on_face(False)
-	    self.robot.camera.close_camera_feed()
+		print('Close camera')
+		Robot.vector.vision.enable_display_camera_feed_on_face(False)
+		Robot.vector.camera.close_camera_feed()
+
+
+
+
+
+
 if __name__ == "__main__":
 	import anki_vector	
 	import time
-	args = anki_vector.util.parse_command_args()
-	robot = anki_vector.Robot(args.serial)
-	print (robot.connect())
+	Robot.connect()
 
-	screen = Screen(robot)
-	screen.boot()
+	screen = Screen()
 	screen.show_Camera()
-	time.sleep(10)
+	
+	time.sleep(20)
 	screen.hide_camera()
-	print (robot.disconnect())
+	print (Robot.disconnect())
 	pass

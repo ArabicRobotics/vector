@@ -20,13 +20,15 @@ Make Vector say 'Hello World' in this simple Vector SDK example program.
 """
 #from clsLog import clsLog
 import anki_vector
+from clsRobot import Robot
+from clsLog import clsLog
 class Say (object):
     """This class for """ 
-    def __init__(self,robot):
+    def __init__(self):
         """This initilization for 
         """ 
         try:
-            self.robot = robot
+            
             return
         except Exception as e:
             #logger = clsLog()
@@ -42,20 +44,20 @@ class Say (object):
         False : Something went wrong
         """ 
         try: 
-            self.robot.behavior.say_text(string)
+            Robot.getRobot()
+            Robot.vector.behavior.say_text(string)
             return True
         except Exception as e:
             print (e)
-            #logger = clsLog()
-            #logger.error(str(e))
+            logger = clsLog()
+            logger.error(str(e))
             return False
 
 
 def main():
-    args = anki_vector.util.parse_command_args()
-    with anki_vector.Robot(args.serial) as robot:
-        say = Say(robot)
-        say.say("Hello World ! ")
-
+    say = Say()
+    Robot.connect()
+    say.say("Hello World ! ")
+    Robot.disconnect()
 if __name__ == "__main__":
     main()

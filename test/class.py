@@ -4,9 +4,9 @@ from  enums import *
 from clsUtilities import *
 from clsjsoninfoLoader import GlobalInfo
 class MyClass (object):
-	def __init__(self, robot,socket = None):
+	def __init__(self,socket = None):
 		try:
-			self.robot = robot
+			
 			self.isRunning = False
 			self.socket = socket
 			return

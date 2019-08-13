@@ -4,14 +4,13 @@ from  enums import *
 from clsUtilities import *
 from clsjsoninfoLoader import GlobalInfo
 from PIL import Image
-
+from clsRobot import Robot
 class Camera (object):
 	# globals: 
-	isInit = None
+	Robot.isInit = None
 	IsStreaming= None
-	def __init__(self, robot,socket=None):
-		try:
-			self.robot = robot
+	def __init__(self,socket=None):
+		try:			
 			self.isRunning = False
 			self.socket = socket
 			return
@@ -23,7 +22,8 @@ class Camera (object):
 
 	def boot(self):
 		try:
-			self.IsStreaming = self.getStreamingStatus()
+			Robot.getRobot()
+			Robot.connect()
 			self.isRunning = True
 			print ("Boot Successfully")
 			return True
@@ -34,31 +34,22 @@ class Camera (object):
 			return False
 
 
-	def init_camera_feed(self):
-		try:				
-			self.robot.camera.init_camera_feed()
-			Camera.isInit=True
-			return True
-		except Exception as e:
-			print ("Error , Cannot init Camera in  ClasCamera  "+ str(e))
-			logger = clsLog()
-			logger.error(str(e))
-			return False
+
 
 
 #region 
 ################# Class Main Functions
-
 	def getlatest_image(self,fileName=None):
 		"""  if fileName is not None then it will save the Image to the file name abd back it.   """
 		try:
-			if Camera.isInit != True:
-				self.init_camera_feed()	
-			image = self.robot.camera.latest_image
+			print("init Camera to Get lastst Image")
+			Robot.init_camera_feed()	
+			image = Robot.vector.camera.latest_image
 			#print (image)
 			if fileName!= None:
 				innerImage = image.raw_image
 				innerImage.save(fileName)
+			print("get las")
 			return image
 		except Exception as e:
 			print ("Error , Cannot getImage from class:  Camera "+ str(e))
@@ -79,8 +70,7 @@ class Camera (object):
 	def shutDown(self):
 		try:
 			try:
-				if Camera.isInit ==True:
-					self.stop_camera_feed()
+				pass
 			except Exception as e:
 				print ("worning , Cannot close  Camera in ClasCamera  "+ str(e))
 			self.isRunning = False
@@ -91,28 +81,7 @@ class Camera (object):
 			logger.error(str(e))
 			return False
 
-	def stop_camera_feed(self):
-		try:
-			self.robot.camera.close_camera_feed()
-			Camera.isInit = False
-			return True
-		except Exception as e:			
-			print ("worning , Cannot init Camera in  ClasCamera  "+ str(e))
-			logger = clsLog()
-			logger.error(str(e))
-			return False
 
-
-
-	def getStreamingStatus(self):
-		try: 
-			self.IsStreaming = self.robot.camera.image_streaming_enabled()
-			return self.IsStreaming
-		except Exception as e:
-			print ("worning , Cannot init Camera in  ClasCamera  "+ str(e))
-			logger = clsLog()
-			logger.error(str(e))
-			return False
 
 
 def main():
@@ -121,16 +90,15 @@ def main():
 	import numpy
 	import scipy.misc
 	from PIL import Image
-	args = anki_vector.util.parse_command_args()
-	robot = anki_vector.Robot(args.serial)
-	print ("I will try to Connect ")
-	print (robot.connect(timeout=10))
-	camera = Camera(robot)
+
+	camera = Camera()
 	camera.boot()
+	print("I will get the latest Image")
 	img = camera.getlatest_image("hi.jpg")
+	print("get the latest Image.. passed")
 
 	camera.shutDown()
-	robot.disconnect()
+	Robot.disconnect()
 
 
 if __name__ == "__main__":

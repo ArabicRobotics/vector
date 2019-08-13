@@ -1,15 +1,15 @@
 import json
+import time
 from clsLog import clsLog
 from enums import *
 from clsUtilities import *
 from clsjsoninfoLoader import GlobalInfo
 import anki_vector
-
+from clsRobot import Robot
 
 class Animation (object):
-    def __init__(self, AsyncRobot=anki_vector.AsyncRobot(), socket=None):
+    def __init__(self, socket=None):
         try:
-            self.robot = AsyncRobot
             self.isRunning = False
             self.socket = socket
             return
@@ -18,25 +18,31 @@ class Animation (object):
             logger = clsLog()
             logger.error(str(e))
             return
-    def play(self,animation ='anim_turn_left_01'):
+    def play(self,animation ='anim_blackjack_speech_tts_01',sleep=3):
         try:
-            self.robot.anim.play_animation(animation)
+            Robot.getRobot()
+            Robot.vector.behavior.drive_off_charger()
+            Robot.vector.anim.play_animation(animation)
+            time.sleep(sleep)
             return True
         except Exception as e:
             print("Error on play animation "+str(e))
             logger = clsLog()
             logger.error(str(e))
             return False
-    def listAnimation(self,play = 10):
+    def listAnimation(self,play = None):
         try:
-            anim_names = self.robot.anim.anim_list
+            Robot.getRobot()
+            anim_names = Robot.vector.anim.anim_list
             i = 0
             for anim_name in anim_names:
-                if play==True:
+                if play!=None:
+                    print ("Play "+str(anim_name))
                     self.play(anim_name)
+                    
                     i = i +1
-                if i>play:
-                    return True
+                    if i>play-1:
+                        return True
                 print(anim_name)
         except Exception as e:
             print("Exception while List Animations: "+str(e))
@@ -46,6 +52,7 @@ class Animation (object):
 
     def boot(self):
         try:
+            Robot.connect()
             self.isRunning = True
             print("Boot Successfully")
             return True
@@ -67,13 +74,15 @@ class Animation (object):
 
 
 def main():
+	
+	
     robot = Animation()
-    robot.robot.connect(timeout=20)
+    Robot.connect()
     robot.listAnimation(10)
     print(robot.play('anim_keepaway_idleliftdown_01'))
 
  
-    robot.robot.disconnect()
+    Robot.disconnect()
 
 
 if __name__ == "__main__":

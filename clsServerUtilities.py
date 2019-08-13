@@ -9,13 +9,13 @@ class ServerUtilities (object):
         """This initilization for 
         """ 
         try: 
-            self.formatter = jsonFormatter('',);
+            self.formatter = jsonFormatter('',)
             return
         except Exception as e:
             logger = clsLog()
             logger.error(str(e))
             return
-        return True
+        return 
 
     @staticmethod
     def setOneMessage(name="",content=""):
@@ -88,6 +88,8 @@ class ServerUtilities (object):
             print (str(e))
             logger = clsLog()
             logger.error(str(e))
+            
+
             return False
 if __name__ == "__main__":
     server =  ServerUtilities()
