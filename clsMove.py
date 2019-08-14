@@ -41,6 +41,7 @@ class Move (object):
 			if Robot.isConnected:
 				Robot.vector.behavior.drive_straight(distance_mm(destance), speed_mmps(speed))
 				print ("Moving Done")
+				
 				return True
 			else:
 				print("Robot is not Connected")
@@ -54,24 +55,24 @@ class Move (object):
 	def moveTo(self,direction="F",duration=1):
 		try:
 			print ("Moving....")
-			
-			while(switch(direction)):
+			while switch(direction):
 				if case("F"):
 					print ("Moving forward")
 					self.move(duration)
-					return
+					return True
 				if case("B"):
 					print ("Moving Backward")
 					self.move(-1*duration)
-					return
+					return True
 				if case("L"):
 					print ("Turning Left")
 					self.turn()
-					return
+					return True
 				if case("R"):
 					print ("turning Right")
 					self.turn(-90)
-					return
+					return True
+				return True
 			return True
 		except Exception as e:
 			print  ("Error on move"+str(e))

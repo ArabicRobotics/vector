@@ -238,20 +238,24 @@ class InputCatcher (object):
 							except:
 								
 								print (robot.data.s,robot.data.nextStep,robot.data.d)
+							
 							#print "I will do move with parameters : Direction : "+str(direction)+ " Duration : "+str(duration)+" nextStep "+ nextStep
 							#self.move.drive_off_charger()
 							self.move.moveTo(direction,duration*50)
 							time.sleep(duration)
+							print ("Thanks moving ! ")
 							#threadMove = threading.Thread(target= self.move.move,args = (direction,duration,nextStep))
 							#self.socket.sendToClient("move","moving to: "+str(direction),enumEventType.Success)
 							#threadMove.start()
 							return True
+						return True
 					return  True 
 				return True                 			
 			return True
 		except Exception as e:
+			print (e)
 			self.socket.sendToClient("failed to make Action",str(e),enumEventType.Error)
-			
+	
 			logger = clsLog()
 			logger.error(str(e))
 			return False
@@ -291,7 +295,7 @@ def Main():
     #data  = '{"op":"set","device":"robot","details":{"name": "Leds", "data": {"op": "c", "n": 1,"s":5}}}'
 
 	# Movement ##
-    data  = '{"op":"set","device":"robot","details":{"name": "Moving", "data": {"op": "m", "d": "F","s":800, "nextStep": "S"}}}' 
+    data  = '{"op":"set","device":"robot","details":{"name": "Moving", "data": {"op": "m", "d": "F","s":8, "nextStep": "S"}}}' 
     robot = Robot()
     Robot.getRobot()
     robot.connect()

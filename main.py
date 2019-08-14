@@ -30,7 +30,7 @@ class Loop (object):
         False : Something went wrong
         """ 
         try: 
-            self.threadServer = threading.Thread(target=self.server.Start)
+            self.threadServer = threading.Thread(target=self.server.start)
             self.threadServer.start()
             time.sleep(2)
             if self.server.running:
@@ -61,12 +61,13 @@ class Loop (object):
                     self.robot.connect()
                     print ("Data is :")
                     data = self.server.receivedData
-                    print (self.server.receivedData)
+                    self.server.sendToClient("data catched",str(data))
+                    print (data)
                     #self.server.sendToClient("Data",str(self.server.receivedData))
-                    self.inputCatcher.catch(data)
+                    print(self.inputCatcher.catch(data))
                     self.server.receivedData = None
                     data = None
-                
+                    print("Back to main loop")
             return True
         except Exception as e:
             print ("Error in main loop :")
