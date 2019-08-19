@@ -26,7 +26,7 @@ class SocketServer (object):
 			self.running = False
 			return
 		except Exception as e:
-			pring ("Error in init Server ...")
+			print ("Error in init Server ...")
 			print (e)
 			logger = clsLog()
 			logger.error(str(e))
@@ -53,7 +53,7 @@ class SocketServer (object):
 				return socket
 
 	def __datasetter(self,c):
-	        """ This Method for      r
+	        """ This Method for
 	        @type  paramName: Bool
 	        @param paramName : Description
 	        @rtype:  Boolean
@@ -72,7 +72,7 @@ class SocketServer (object):
 	def service_connection(self,key, mask):
 		try:
 			sock = key.fileobj
-			arrItem = [socket,key.data.addr]
+			arrItem = [sock,key.data.addr]
 			self.sockets.append(arrItem)
 			data = key.data
 			if mask & selectors.EVENT_READ:
@@ -89,8 +89,9 @@ class SocketServer (object):
 			if mask & selectors.EVENT_WRITE:
 				if data.outb:
 					print("echoing", repr(data.outb), "to", data.addr)
-					sent = sock.send(data.outb)  # Should be ready to write
-					data.outb = data.outb[sent:]
+					print (data.outb)
+					#sent = sock.send(data.outb)  # Should be ready to write
+					#data.outb = data.outb[sent:]
 		except Exception as e:
 			print ("Error in Server service_connection  ...")
 			print (e)
@@ -114,7 +115,7 @@ class SocketServer (object):
 		try:
 			if socket ==None:
 				if len(self.sockets) >0:
-					self.sockets[len(self.sockets)-1][0].send(message)
+					self.sockets[len(self.sockets)-1][0].send(message.encode('utf-8'))
 				else:
 					print ("No Socket To send to")
 			socket.send(message)
