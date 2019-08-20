@@ -29,7 +29,7 @@ class Loop (object):
         @return: True : everything went fine
         False : Something went wrong
         """ 
-        try: 
+        try:  
             self.threadServer = threading.Thread(target=self.server.start)
             self.threadServer.start()
             time.sleep(2)
